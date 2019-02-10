@@ -33,7 +33,6 @@ class Counter extends Component {
           onClick={this.handleIncrement}
           className="btn btn-secondary btn-sm"
         > */}
-
         {/* In here we can also pass in the parameters to method unlike in the above approach  */}
         <button
           onClick={() => this.handleIncrement()}
@@ -41,6 +40,8 @@ class Counter extends Component {
         >
           Increment
         </button>
+        <br />
+        <br />
       </React.Fragment>
     );
   }
