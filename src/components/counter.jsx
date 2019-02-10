@@ -28,8 +28,15 @@ class Counter extends Component {
         <span style={this.style} className={this.getClassType()}>
           {this.formatCount()}
         </span>
-        <button
+        {/* this is one way to handle click events */}
+        {/* <button
           onClick={this.handleIncrement}
+          className="btn btn-secondary btn-sm"
+        > */}
+
+        {/* In here we can also pass in the parameters to method unlike in the above approach  */}
+        <button
+          onClick={() => this.handleIncrement()}
           className="btn btn-secondary btn-sm"
         >
           Increment
