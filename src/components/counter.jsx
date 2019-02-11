@@ -24,28 +24,26 @@ class Counter extends Component {
 
   render() {
     return (
-      console.log("props", this.props),
-      (
-        <React.Fragment>
-          <span style={this.style} className={this.getClassType()}>
-            {this.formatCount()}
-          </span>
-          {/* this is one way to handle click events */}
-          {/* <button
+      <React.Fragment>
+        {this.props.children}
+        <span style={this.style} className={this.getClassType()}>
+          {this.formatCount()}
+        </span>
+        {/* this is one way to handle click events */}
+        {/* <button
           onClick={this.handleIncrement}
           className="btn btn-secondary btn-sm"
         > */}
-          {/* In here we can also pass in the parameters to method unlike in the above approach  */}
-          <button
-            onClick={() => this.handleIncrement()}
-            className="btn btn-secondary btn-sm"
-          >
-            Increment
-          </button>
-          <br />
-          <br />
-        </React.Fragment>
-      )
+        {/* In here we can also pass in the parameters to method unlike in the above approach  */}
+        <button
+          onClick={() => this.handleIncrement()}
+          className="btn btn-secondary btn-sm"
+        >
+          Increment
+        </button>
+        <br />
+        <br />
+      </React.Fragment>
     );
   }
 
