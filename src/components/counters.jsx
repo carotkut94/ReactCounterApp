@@ -9,17 +9,64 @@ class Counters extends Component {
       { id: 4, value: 0 }
     ]
   };
+  // render() {
+  //   return (
+  //     <div>
+  //       {this.state.counters.map(counter => (
+  //         <Counter
+  //           key={counter.id}
+  //           onDelete={this.handleDelete}
+  //           value={counter.value}
+  //           id={counter.id}
+  //         />
+  //       ))}
+  //       {/* Here ID and Key are two different things, they might have same value but key is internally used by React*/}
+  //     </div>
+  //   );
+  // }
+
+  handleReset = () => {
+    const counters = this.state.counters.map(c => {
+      c.value = 0;
+      return c;
+    });
+    this.setState({ counters });
+  };
+
+  handleIncrement = counter => {
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+    counters[index] = { ...counter };
+    counters[index].value++;
+    this.setState({ counters });
+  };
+
   render() {
     return (
       <div>
+        <button
+          onClick={this.handleReset}
+          className="btn btn-primary btn-sm m-2"
+        >
+          Reset
+        </button>
         {this.state.counters.map(counter => (
-          <Counter key={counter.id} value={counter.value}>
-            <h4>Counter #{counter.id}</h4>
-          </Counter>
+          <Counter
+            key={counter.id}
+            onDelete={this.handleDelete}
+            counter={counter}
+            onIncrement={this.handleIncrement}
+          />
         ))}
+        {/* Here ID and Key are two different things, they might have same value but key is internally used by React*/}
       </div>
     );
   }
+
+  handleDelete = counterId => {
+    const counters = this.state.counters.filter(c => c.id !== counterId);
+    this.setState({ counters });
+  };
 }
 
 export default Counters;

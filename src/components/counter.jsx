@@ -1,10 +1,5 @@
 import React, { Component } from "react";
 class Counter extends Component {
-  state = {
-    value: this.props.value,
-    tags: ["tag1", "tag2", "tag3"]
-  };
-
   style = {
     fontSize: 10,
     fontWeight: "bold"
@@ -17,15 +12,18 @@ class Counter extends Component {
   // }
 
   // Or we can use arrow functions
-  handleIncrement = () => {
-    console.log("Increment clicked");
-    this.setState({ count: this.state.count + 1 });
-  };
+  // handleIncrement = () => {
+  //   console.log("Increment clicked");
+  //   this.setState({ value: this.state.value + 1 });
+  // };
+
+  // The component that owns a piece of the state, should be the one
+  // modifying it.
 
   render() {
     return (
-      <React.Fragment>
-        {this.props.children}
+      <div>
+        {/*this.props.children*/}
         <span style={this.style} className={this.getClassType()}>
           {this.formatCount()}
         </span>
@@ -36,14 +34,18 @@ class Counter extends Component {
         > */}
         {/* In here we can also pass in the parameters to method unlike in the above approach  */}
         <button
-          onClick={() => this.handleIncrement()}
+          onClick={() => this.props.onIncrement(this.props.counter)}
           className="btn btn-secondary btn-sm"
         >
           Increment
         </button>
-        <br />
-        <br />
-      </React.Fragment>
+        <button
+          onClick={() => this.props.onDelete(this.props.counter.id)}
+          className="btn btn-danger btn-sm m-2"
+        >
+          Delete
+        </button>
+      </div>
     );
   }
 
@@ -69,12 +71,12 @@ class Counter extends Component {
 
   getClassType() {
     var classes = "badge m-2 badge-";
-    classes += this.state.value === 0 ? "warning" : "primary";
+    classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes;
   }
 
   formatCount() {
-    const { value } = this.state;
+    const { value } = this.props.counter;
     return value === 0 ? "Zero" : value;
   }
 }
