@@ -18,20 +18,19 @@ class Counters extends Component {
   // }
 
   render() {
+    //Object Destructuring
+    const { onReset, onDelete, onIncrement } = this.props;
     return (
       <div>
-        <button
-          onClick={this.props.onReset}
-          className="btn btn-primary btn-sm m-2"
-        >
+        <button onClick={onReset} className="btn btn-primary btn-sm m-2">
           Reset
         </button>
         {this.props.counters.map(counter => (
           <Counter
             key={counter.id}
-            onDelete={this.props.onDelete}
+            onDelete={onDelete}
             counter={counter}
-            onIncrement={this.props.onIncrement}
+            onIncrement={onIncrement}
           />
         ))}
         {/* Here ID and Key are two different things, they might have same value but key is internally used by React*/}
