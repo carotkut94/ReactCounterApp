@@ -2,9 +2,11 @@ import React from "react";
 
 // state less functional component rather then class, as it does not have any state, and eventHandlers
 const NavBar = ({ total }) => {
+  // in stateless functional component we cannot use lifecycle hooks
+  console.log("NavBar Rendered");
   return (
     <nav className="navbar navbar-light bg-light">
-      <a className="navbar-brand" href="#">
+      <a className="navbar-brand">
         NavBar
         <span className="badge badge-pill badge-secondary m-2">{total}</span>
       </a>

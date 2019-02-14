@@ -19,6 +19,7 @@ class Counters extends Component {
 
   render() {
     //Object Destructuring
+    console.log("Counters Rendered");
     const { onReset, onDelete, onIncrement } = this.props;
     return (
       <div>

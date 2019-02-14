@@ -21,6 +21,7 @@ class Counter extends Component {
   // modifying it.
 
   render() {
+    console.log("Single counter rendered");
     return (
       <div>
         {/*this.props.children*/}
