@@ -20,32 +20,48 @@ class Counter extends Component {
   // The component that owns a piece of the state, should be the one
   // modifying it.
 
+  componentWillUnmount() {
+    console.log("Counter - Unmount");
+  }
+
   render() {
     console.log("Single counter rendered");
     return (
-      <div>
+      <div className="row">
         {/*this.props.children*/}
-        <span style={this.style} className={this.getClassType()}>
-          {this.formatCount()}
-        </span>
+        <div className="col-1">
+          <span style={this.style} className={this.getClassType()}>
+            {this.formatCount()}
+          </span>
+        </div>
+        <div className="col">
+          <button
+            onClick={() => this.props.onIncrement(this.props.counter)}
+            className="btn btn-secondary btn-sm"
+          >
+            +
+          </button>
+          <button
+            onClick={() => this.props.onDecrement(this.props.counter)}
+            className="btn btn-secondary btn-sm m-2"
+            disabled={this.props.counter.value === 0 ? "disabled" : ""}
+          >
+            -
+          </button>
+          <button
+            onClick={() => this.props.onDelete(this.props.counter.id)}
+            className="btn btn-danger btn-sm"
+          >
+            x
+          </button>
+        </div>
+
         {/* this is one way to handle click events */}
         {/* <button
           onClick={this.handleIncrement}
           className="btn btn-secondary btn-sm"
         > */}
         {/* In here we can also pass in the parameters to method unlike in the above approach  */}
-        <button
-          onClick={() => this.props.onIncrement(this.props.counter)}
-          className="btn btn-secondary btn-sm"
-        >
-          Increment
-        </button>
-        <button
-          onClick={() => this.props.onDelete(this.props.counter.id)}
-          className="btn btn-danger btn-sm m-2"
-        >
-          Delete
-        </button>
       </div>
     );
   }
